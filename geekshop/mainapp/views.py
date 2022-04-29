@@ -1,10 +1,11 @@
 from django.urls import reverse
 from django.shortcuts import render
+from .models import Products, Category
 
 menu_links = {
     'index': 'Магазин',
     'products': 'Каталог',
-    'contact': 'Контакты'
+    'contact': 'Контакты',
 }
 
 
@@ -15,16 +16,19 @@ def main(request):
     }) 
 
 
-def products(request): 
-    return render(request, 'mainapp/products.html', context ={
+def products(request):
+    categories = Category.objects.all()
+    products = Products.objects.all()[:3]
+    return render(
+        request, 
+        'mainapp/products.html', 
+        context ={
         'title': 'Каталог',
         'menu': menu_links,
-        'products': [
-            {'name': 'Стул_1', 'description': 'Стул повышенного качества', 'image': 'img/product-11.jpg'},
-            {'name': 'Стул_2', 'description': 'Прекрасный стул', 'image': 'img/product-21.jpg'},
-            {'name': 'Стул_3', 'description': 'Стул премиального качества', 'image': 'img/product-31.jpg'},
-        ]
-    }) 
+        'products': products,
+        'categories': categories,
+        }
+    )
 
 
 def contact(request): 
