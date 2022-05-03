@@ -1027,6 +1027,11 @@ td:first-child {
 }
 .related-products .block a img {
 	float: left;
+	
+}
+.related-products .block a img.product-image {
+	float: left;
+	width: 368px;
 }
 .related-products .block {
 	float: left;
