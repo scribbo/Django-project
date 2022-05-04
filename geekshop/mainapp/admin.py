@@ -10,5 +10,3 @@ class CategoryAdmin(admin.ModelAdmin):
 @ admin.register(Products)
 class ProductAdmin(admin.ModelAdmin):
     pass
-
-
