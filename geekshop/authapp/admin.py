@@ -11,5 +11,3 @@ class ShopUserAdmin(UserAdmin):
             *super().get_fieldsets(request, obj), 
             ('Custom fields', {'fields': ('city',)})
         ]
-
-

@@ -22,6 +22,4 @@ class UserEditForm(UserChangeForm):
         if data <= 0:
             raise ValidationError ("Мы работаем в Санкт-Петербурге")
         return data
-        
-
                     
