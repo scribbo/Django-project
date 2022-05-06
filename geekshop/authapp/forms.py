@@ -17,9 +17,9 @@ class UserEditForm(UserChangeForm):
         model = ShopUser
         fields = ('username', 'first_name', 'last_name', 'email', 'city', 'age', 'avatar')
 
-    def clean_city(self):
-        data = self.cleaned_data["age"]
-        if data <= 0:
-            raise ValidationError ("Мы работаем в Санкт-Петербурге")
+    def clean_age(self):
+        data = self.cleaned_data['age']
+        if data <= 18:
+            raise ValidationError ("Пользователь должен быть совершеннолетним")
         return data
                     
