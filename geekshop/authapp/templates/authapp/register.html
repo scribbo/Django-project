@@ -1,9 +1,9 @@
 {% extends 'authapp/base.html' %}
 
 {% block content %}
-<form class="form-horizontal" action="{% url 'auth:register' %}" method="post">
+<form class="pure-form" action="{% url 'auth:register' %}" method="post">
     {% csrf_token %}
     {{ form.as_p}}
-    <input class="form-control" type="submit" value="зарегистрироваться">
+    <input class="pure-button pure-button-primary" type="submit" value={{ 'зарегистироваться'| title }}>
 </form>
 {% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'basketapp/base.html' %}
+
+{% block content %}
+{% for item in basket %}
+    <p>{{ item }}<a href="{% url 'basket:remove' item.id %}">Удалить</a></p>
+{% endfor %}
+<input class="pure-button pure-button-primary" type="submit" value={{ 'оплатить'| title }}>
+{% endblock %}

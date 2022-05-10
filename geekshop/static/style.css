@@ -1076,3 +1076,14 @@ td:first-child {
 .related-products a:hover .text{
 	display: block;
 }
+.category-products.related .title {
+	height: 100px;
+}
+.category-products.related .title h2 {
+	margin-top: 0px;
+}
+.category-products.related .title .explore {
+	margin-top: 0px;
+}
+.category-products.related-products {
+	margin-bottom: 0px;

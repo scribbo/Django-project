@@ -1,3 +1,4 @@
+from encodings import utf_8
 import json
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -8,7 +9,7 @@ from mainapp.models import Category, Products
 class Command(BaseCommand):
     
     def handle(self, *args, **kwargs):
-        with open(settings.DATA_ROOT / "categories.json", 'r') as file:
+        with open(settings.DATA_ROOT / "categories.json", 'r', encoding='utf_8') as file:
             categories = json.load(file)
             for category_data in categories:
                 try:
@@ -17,7 +18,7 @@ class Command(BaseCommand):
                 except IntegrityError:
                     pass
     
-        with open(settings.DATA_ROOT / "products.json", 'r') as file:
+        with open(settings.DATA_ROOT / "products.json", 'r', encoding='utf_8') as file:
             products = json.load(file)
             for product_data in products:
                 product_data['category'] = Category.objects.get(name=product_data['category'])

@@ -18,14 +18,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 import mainapp.views as mainapp
+import basketapp.views as basketapp
 
 urlpatterns = [
     path('', mainapp.main, name='index'), 
-    path('auth/', include('authapp.urls', namespace='auth')),
-    path('products/', mainapp.products, name='products'), 
-    path('contact/', mainapp.contact, name='contact'),
     path('admin/', admin.site.urls),
-    ]
+    path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('contact/', mainapp.contact, name='contact'),
+    path('products/', mainapp.products, name='products'),
+    path('products/<int:pk>/', mainapp.category, name='category'), 
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
