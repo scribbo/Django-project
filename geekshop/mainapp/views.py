@@ -1,5 +1,4 @@
-from django.urls import reverse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Products, Category
 
 menu_links = {
@@ -26,6 +25,23 @@ def products(request):
         'title': 'Каталог',
         'menu': menu_links,
         'products': products,
+        'categories': categories,
+        }
+    )
+
+
+def category(request, pk):
+    categories = Category.objects.all()
+    category = get_object_or_404(Category, id=pk)
+    products = Products.objects.filter(category=category)
+    return render(
+        request, 
+        'mainapp/category.html', 
+        context ={
+        'title': 'Каталог',
+        'menu': menu_links,
+        'products': products,
+        'category': category,
         'categories': categories,
         }
     )

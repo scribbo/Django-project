@@ -1,9 +1,12 @@
 {% extends 'authapp/base.html' %}
 
 {% block content %}
-<form class="form-horizontal" enctype='multipart/form-data' action="{% url 'auth:edit' %}" method="post">
+{% if request.user.image %}
+    <img class=user-image src="{{ request.user.image.url }}"/>
+{% endif %}
+<form class="pure-form" action="{% url 'auth:edit' %}" method="post">
     {% csrf_token %}
     {{ form.as_p}}
-    <input class="form-control" type="submit" value="сохранить">
+    <input class="pure-button pure-button-primary" type="submit" value={{ 'сохранить'| title }}>
 </form>
 {% endblock %}

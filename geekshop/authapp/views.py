@@ -54,4 +54,4 @@ def edit(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('index'))

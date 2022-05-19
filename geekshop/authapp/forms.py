@@ -22,4 +22,4 @@ class UserEditForm(UserChangeForm):
         if data <= 18:
             raise ValidationError ("Пользователь должен быть совершеннолетним")
         return data
-                    
+                     
