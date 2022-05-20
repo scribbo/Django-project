@@ -905,6 +905,10 @@ td:first-child {
 	width: 570px;
 	height: 570px;
 }
+.slider-product img {
+	width: 570px;
+	height: 570px;
+}
 .slider-control {
 	width: 420px;
 	height: 70px;
@@ -917,6 +921,10 @@ td:first-child {
 	position: relative;
 	float: left;
 	margin-right: 10px;
+}
+.slider-control .block img {
+	height: 70px;
+	width: 70px;
 }
 .slider-control a .text {
 	display: none;

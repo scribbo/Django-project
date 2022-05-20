@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, get_object_or_404
 from .models import Products, Category
 
@@ -17,14 +18,33 @@ def main(request):
 
 def products(request):
     categories = Category.objects.all()
-    products = Products.objects.all()[:3]
+    products = Products.objects.all()
+    hot_product = random.choice(products)
+    products = products.exclude(pk=hot_product.pk)[:3]
     return render(
         request, 
         'mainapp/products.html', 
         context ={
         'title': 'Каталог',
         'menu': menu_links,
+        'hot_product' : hot_product,
         'products': products,
+        'categories': categories,
+        }
+    )
+
+
+def product(request, pk):
+    categories = Category.objects.all()
+    product = get_object_or_404(Products, pk=pk)
+    return render(
+        request, 
+        'mainapp/product.html', 
+        context ={
+        'title': product.name,
+        'menu': menu_links,
+        'product': product,
+        'category': product.category,
         'categories': categories,
         }
     )
