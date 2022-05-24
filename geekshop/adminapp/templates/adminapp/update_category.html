@@ -1,0 +1,10 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+<form class="pure-form" action="{% url 'admin:update_category' category.pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <input class="pure-button pure-button-primary" type="submit" value='сохранить'>
+</form>
+{% endblock %}
+

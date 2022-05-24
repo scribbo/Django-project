@@ -1,0 +1,38 @@
+{% extends 'adminapp/base.html' %}
+{% load static %} 
+{% block content %}
+<div class='create-button'>
+<a href="{% url 'admin:create_user' %}" class="pure-button pure-button-secondary"> 
+    создать пользователя 
+</a>
+</div>   
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>City</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.city }}</td>
+            <td>
+                <a href="{% url 'admin:update_user' user.pk %}" class="pure-button pure-button-secondary"> 
+                    редактировать 
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'admin:delete_user' user.pk %}" class="pure-button pure-button-secondary"> 
+                    удалить 
+                </a>
+            </td>
+        </tr>
+        {% endfor %} 
+    </tbody>
+</table>
+
+{% endblock %}
