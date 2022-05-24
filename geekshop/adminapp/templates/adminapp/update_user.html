@@ -1,8 +1,8 @@
 {% extends 'adminapp/base.html' %}
 
 {% block content %}
-{% if user.image %}
-    <img class=user-image src="{{ user.image.url }}"/>
+{% if user.avatar %}
+    <img class=user-image src="{{ user.avatar.url }}"/>
 {% endif %}
 <form class="pure-form" action="{% url 'admin:update_user' user.pk %}" method="post">
     {% csrf_token %}
