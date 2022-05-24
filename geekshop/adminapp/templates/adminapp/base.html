@@ -10,7 +10,7 @@
     </title>
     {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'pure-min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'auth-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin-styles.css' %}">
     {% endblock %}
     {% block js %}
     {% endblock %}
@@ -18,6 +18,8 @@
 <body>
     <div class="content">
         <a class="pure-button pure-button-secondary" href="{% url 'index' %}">На главную</a>
+        <a class="pure-button pure-button-secondary" href="{% url 'admin:users' %}">пользователи</a>
+        <a class="pure-button pure-button-secondary" href="{% url 'admin:categories' %}">категории</a>
        
         <h2>{{ title }}</h2>
         

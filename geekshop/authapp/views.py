@@ -45,7 +45,7 @@ def edit(request):
     form = UserEditForm(instance=request.user)
     
     if request.method == 'POST':
-        form = UserEditForm(instance=request.user, data=request.POST)
+        form = UserEditForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('index'))

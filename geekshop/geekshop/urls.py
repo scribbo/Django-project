@@ -22,7 +22,7 @@ import basketapp.views as basketapp
 
 urlpatterns = [
     path('', mainapp.main, name='index'), 
-    path('admin/', admin.site.urls),
+    path('admin/',  include('adminapp.urls', namespace='admin')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('contact/', mainapp.contact, name='contact'),
