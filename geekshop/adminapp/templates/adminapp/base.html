@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
+{% load my_tags %}
 <html> 
 <head>
     <metacharset="utf-8"> 
     <title>
         {% block title %}
-            {{ title }} 
+            {{ title|stars }} 
         {% endblock %} 
     </title>
     {% block css %}

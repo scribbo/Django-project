@@ -1,12 +1,11 @@
 {% extends 'adminapp/base.html' %}
 
 {% block content %}
-{% if user.avatar %}
-    <img class=user-image src="{{ user.avatar.url }}"/>
-{% endif %}
-<form class="pure-form" enctype='multipart/form-data' action="{% url 'admin:update_user' object.pk %}" method="post">
+<form class="pure-form" enctype='multipart/form-data' 
+action="{% url 'admin:update_product' product.pk %}" method="post">
     {% csrf_token %}
     {{ form.as_p}}
     <input class="pure-button pure-button-primary" type="submit" value='сохранить'>
 </form>
 {% endblock %}
+

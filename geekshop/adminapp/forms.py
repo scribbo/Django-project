@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from authapp.models import ShopUser
-from mainapp.models import Category
+from mainapp.models import Products, Category
+from django.forms.widgets import HiddenInput
 from django import forms
 
 class RegisterForm(UserCreationForm):
@@ -18,5 +19,13 @@ class CategoryEditForm(forms.ModelForm):
         model = Category
         fields = '__all__'
 
-
+class ProductEditForm(forms.ModelForm):
+    class Meta:
+        model = Products
+        fields = '__all__'
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].widget = HiddenInput()
+        
         
