@@ -17,8 +17,8 @@
         </tr>
     </thead>
     <tbody>
-        {% for category in categories %} 
-        <tr>
+        {% for category in object_list %} 
+        <tr class="{% if not category.is_active %}inactive{% endif %}">
             <td>{{ category.name }}</td>
             <td>{{ category.description }}</td>
             <td>

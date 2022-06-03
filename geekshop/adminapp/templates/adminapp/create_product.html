@@ -1,0 +1,10 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+<form class="pure-form" enctype='multipart/form-data' 
+action="{% url 'admin:create_product' category.pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <input class="pure-button pure-button-primary" type="submit" value='Создать продукт'>
+</form>
+{% endblock %}

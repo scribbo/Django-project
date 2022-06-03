@@ -5,3 +5,7 @@
 .create-button {
     margin: 1em 0em;
 }
+.inactive {
+    color: gray;
+    background-color: lightgray;
+}
