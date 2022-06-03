@@ -67,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mainapp.context_processors.menu_links',
+
             ],
         },
     },
@@ -142,3 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Data files
 DATA_ROOT = BASE_DIR / "json"
+
+# Email
+EMAIL_FILE_PATH = './mails/'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+SITE_ADDRESS = 'http://localhost:8000'

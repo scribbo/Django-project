@@ -10,7 +10,13 @@ class LoginForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = ShopUser
-        fields = ('username',)
+        fields = ('username', 'email')
+    
+    def save(self, commit=True):
+        user = super().save(commit)
+        user.is_active = False
+        user.save()
+        return user
 
 class UserEditForm(UserChangeForm):
     class Meta:

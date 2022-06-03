@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponseRedirect
 from django.urls import reverse
-from numpy import imag
 from .models import Basket
 from django.contrib.auth.decorators import login_required
 from mainapp.models import Products

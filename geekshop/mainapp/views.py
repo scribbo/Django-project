@@ -5,18 +5,12 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 from .models import Products, Category
 
-menu_links = {
-    'index': 'Магазин',
-    'products': 'Каталог',
-    'contact': 'Контакты',
-}
-
 
 def main(request): 
     return render(request, 'mainapp/index.html', context ={
         'title': 'Магазин',
-        'menu': menu_links,
-    }) 
+        }
+    ) 
 
 
 def products(request):
@@ -29,7 +23,6 @@ def products(request):
         'mainapp/products.html', 
         context ={
         'title': 'Каталог',
-        'menu': menu_links,
         'hot_product' : hot_product,
         'products': products,
         'categories': categories,
@@ -45,7 +38,6 @@ def product(request, pk):
         'mainapp/product.html', 
         context ={
         'title': product.name,
-        'menu': menu_links,
         'product': product,
         'category': product.category,
         'categories': categories,
@@ -64,8 +56,7 @@ def category(request, pk, page=1):
         request, 
         'mainapp/category.html', 
         context ={
-        'title': 'Каталог',
-        'menu': menu_links,
+        'title': 'Каталог',        
         'products': paginator.page(page),
         'category': category,
         'categories': categories,
@@ -75,6 +66,6 @@ def category(request, pk, page=1):
 
 def contact(request): 
     return render(request, 'mainapp/contact.html', context ={
-        'title': 'Контакты',
-        'menu': menu_links,
-    }) 
+        'title': 'Контакты',       
+        }
+    ) 
