@@ -2,7 +2,7 @@
 {% load static %} 
 {% block content %}
 <div class='create-button'>
-    <a href="{% url 'admin:create_product' category.pk %}" class="pure-button pure-button-secondary"> 
+    <a href="{% url 'admin:create_product' category_pk %}" class="pure-button pure-button-secondary"> 
         создать продукт 
     </a>
 </div> 
@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for product in object_list %}
+        {% for product in products %}
         <tr class="{% if not product.is_active %}inactive{% endif %}">
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
