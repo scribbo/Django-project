@@ -6,7 +6,8 @@
 {% endif %}
 <form class="pure-form" enctype='multipart/form-data' action="{% url 'auth:edit' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p}}
+    {{ user_form.as_p}}
+    {{ profile_form.as_p}}
     <input class="pure-button pure-button-primary" type="submit" value={{ 'сохранить'| title }}>
 </form>
 {% endblock %}

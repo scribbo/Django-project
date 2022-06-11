@@ -2,7 +2,7 @@ from dataclasses import fields
 from django import forms
 from django.forms import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from authapp.models import ShopUser
+from .models import ShopUser, ShopUserProfile
 
 class LoginForm(AuthenticationForm): 
     pass
@@ -28,4 +28,9 @@ class UserEditForm(UserChangeForm):
         if data <= 18:
             raise ValidationError ("Пользователь должен быть совершеннолетним")
         return data
-                     
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('gender', 'about')
+                

@@ -104,10 +104,10 @@ def delete_category(request, pk):
 
 @check_is_superuser
 def products(request, category_pk):
-    my_category = get_object_or_404(Category, pk=category_pk)
+    category = get_object_or_404(Category, pk=category_pk)
     return render(request, 'adminapp/products.html', context={
-        'title': my_category.name,
-        'products': Products.objects.filter(category=my_category),
+        'title': category.name,
+        'products': Products.objects.filter(category=category),
         'category_pk': category_pk
 
     })
