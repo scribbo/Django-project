@@ -21,6 +21,7 @@ import mainapp.views as mainapp
 import basketapp.views as basketapp
 
 urlpatterns = [
+    path('', include('social_django.urls', namespace='social')),
     path('', mainapp.main, name='index'), 
     path('admin/',  include('adminapp.urls', namespace='admin')),
     path('auth/', include('authapp.urls', namespace='auth')),

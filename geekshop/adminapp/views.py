@@ -102,12 +102,15 @@ def delete_category(request, pk):
     category.save()
     return HttpResponseRedirect(reverse('admin:categories'))
 
-class ProductsListView(ListView):
-    template_name = 'adminapp/products.html'
-    model = Products
+@check_is_superuser
+def products(request, category_pk):
+    category = get_object_or_404(Category, pk=category_pk)
+    return render(request, 'adminapp/products.html', context={
+        'title': category.name,
+        'products': Products.objects.filter(category=category),
+        'category_pk': category_pk
 
-    def get_queryset(self):
-        return Products.objects.filter(category=category)
+    })
 
 
 @check_is_superuser

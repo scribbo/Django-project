@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&dl1t-6bkhj-a7+_tg*gq6$(&)bvtv94+phr^qfkn-sbg%n@m*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
 
     'mainapp',
     'authapp',
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'geekshop.urls'
@@ -68,6 +71,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'mainapp.context_processors.menu_links',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect'
 
             ],
         },
@@ -109,7 +114,31 @@ AUTH_PASSWORD_VALIDATORS = [
 # Auth
 AUTH_USER_MODEL = 'authapp.ShopUser'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 LOGIN_URL = 'auth:login'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL ='/'
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email',]
+SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE=True
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details', 
+    'social_core.pipeline.social_auth.social_uid', 
+    'social_core.pipeline.social_auth.auth_allowed', 
+    'social_core.pipeline.social_auth.social_user', 
+    'social_core.pipeline.user.create_user', 
+    'social_core.pipeline.social_auth.associate_user', 
+    'social_core.pipeline.social_auth.load_extra_data', 
+    'social_core.pipeline.user.user_details',
+    'authapp.pipeline.get_user_gender'
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
