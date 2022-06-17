@@ -12,8 +12,8 @@ def view (request):
     'basketapp/view.html',
     context ={
         'title': 'Корзина',
-        'basket': Basket.objects.filter(user=request.user),
-    })
+        }
+    )
 
 
 @login_required

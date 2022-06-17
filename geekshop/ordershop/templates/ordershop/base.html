@@ -1,0 +1,26 @@
+{% load static %}
+<html> 
+<head>
+    <metacharset="utf-8"> 
+    <title>
+        {% block title %}
+            {{ title }} 
+        {% endblock %} 
+    </title>
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pure-min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'order-styles.css' %}">
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+</head>
+<body>
+    <div class="content">
+        <a class="pure-button pure-button-secondary" href="{% url 'index' %}">На главную</a>
+        <h2>{{ title }}</h2>
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

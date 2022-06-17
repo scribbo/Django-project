@@ -5,3 +5,11 @@
 .product-image {
     max-width: 240px;
 }
+
+.create-button {
+    margin: lem 0;
+}
+
+.basket_summary {
+    margin: 0.5em 0; 
+}

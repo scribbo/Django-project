@@ -1,7 +1,5 @@
-from unicodedata import category
 from authapp.models import ShopUser
 from mainapp.models import Category, Products
-from adminapp.utils import check_is_superuser
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from adminapp.forms import (
      CategoryEditForm, 
@@ -12,20 +10,9 @@ from adminapp.forms import (
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.utils.decorators import method_decorator
-
-class TitleMixin:
-    title = None
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = self.title
-        return context
-
-class SuperUserRequiredMixin:
-    @method_decorator(check_is_superuser)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-    
+from utils.decorators import check_is_superuser
+from utils.mixin import SuperUserRequiredMixin, TitleMixin
+ 
 
 class UserListView(SuperUserRequiredMixin, TitleMixin, ListView):
     template_name = 'adminapp/users.html'
