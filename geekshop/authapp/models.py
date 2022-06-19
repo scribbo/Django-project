@@ -40,11 +40,11 @@ class ShopUserProfile(models.Model):
     about = models.TextField(blank=True) 
     gender = models.CharField(max_length=1,choices=GENDER_CHOICES, blank=True)
 
-    @receiver(post_save, sender=ShopUser)
-    def  update_user_profile(sender, instance, created, **kwargs): 
-        if created: 
-            profile=ShopUserProfile(user=instance)
-        else:
-            profile=ShopUserProfile.objects.get(user=instance)
-        profile.save() 
-       
+@receiver(post_save, sender=ShopUser)
+def  update_user_profile(sender, instance, created, **kwargs): 
+    if created: 
+        profile=ShopUserProfile(user=instance)
+    else:
+        profile=ShopUserProfile.objects.get(user=instance)
+    profile.save()
+    
