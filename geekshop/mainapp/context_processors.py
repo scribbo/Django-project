@@ -1,3 +1,6 @@
+from requests import request
+
+
 def menu_links(request):
     return {
         'menu': {

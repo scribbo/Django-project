@@ -1,0 +1,53 @@
+{% extends 'ordershop/base.html' %}
+{% load static %} 
+{% block content %}
+<div class='create-button'>
+{% comment %}     {% url 'order:create' %}
+ {% endcomment %}    
+</div> 
+{% if not object_list %}
+    <h4>У вас нет заказов</h4>
+{% else %}
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Created_at</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <td>{{ object.created_at }}</td>
+                <td>{{ object.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'orders:update' object.pk %}" class="pure-button pure-button-secondary"> 
+                        редактировать 
+                    </a> 
+                </td>
+                <td>
+                    {% if object.can_pay %}
+                    <a href="{% url 'orders:pay' object.pk %}" class="pure-button pure-button-secondary"> 
+                        оплатить 
+                    </a>
+                    {% else %}
+                    <span>Оплачен</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if object.can_cancel  %}
+                    <a href="{% url 'orders:cancel' object.pk %}" class="pure-button pure-button-secondary"> 
+                        отменить 
+                    </a>
+                    {% else %}
+                    <span>Отменен</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+{% endif%}
+{% endblock %} 

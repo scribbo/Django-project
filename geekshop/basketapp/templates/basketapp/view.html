@@ -3,5 +3,12 @@
 {% block content %} 
 <div class="basket_list"> 
     {% include 'basketapp/includes/inc_basket_list.html' %}
+    {% if basket.quantity %}
+    <div class = 'create-button'>
+        <a href="{% url 'orders:create' %}" class="pure-button pure-button-secondary"> 
+            создать заказ 
+        </a>
+    </div>
+    {% endif%}
 </div> 
 {% endblock %}

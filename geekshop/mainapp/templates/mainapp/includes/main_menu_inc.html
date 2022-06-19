@@ -7,8 +7,16 @@
         {% endfor %}>
         {% endwith %}
         {% if request.user.is_authenticated %}
-            <li><a href="{% url 'auth:edit' %}">{{ user.username }}</a></li>
-            <li><a href="{% url 'basket:view' %}">Корзина({{ request.user.basket.all|length }})</a></li>
+            <li>
+                <div class='dropdown'>
+                    <a href="#">{{ user.username }}</a>
+                    <div class='dropdown-content'>
+                        <a href="{% url 'auth:edit' %}">Профиль</a>
+                        <a href="{% url 'basket:view' %}">Корзина({{ request.user.basket.all|length }})</a>
+                        <a href="{% url 'orders:list' %}">Заказы</a>
+                    </div>
+                </div>
+            </li>
             {% if request.user.is_superuser %}
             <li><a href="{% url 'admin:users' %}">Админка</a></li>
             {% endif %}
