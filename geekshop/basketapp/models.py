@@ -6,9 +6,11 @@ class BasketManager(models.Manager):
     def quantity(self):
         return sum([item.quantity for item in self.all()])
 
-
     def sum(self):
         return sum([item.product.price * item.quantity for item in self.all()])
+
+    def can_create_order(self):
+        return all(item.quantity <= item.product.quantity for item in self.all())
 
 class Basket(models.Model):
     user = models.ForeignKey(
