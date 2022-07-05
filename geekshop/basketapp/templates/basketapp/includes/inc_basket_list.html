@@ -1,4 +1,6 @@
-{% load static %} 
+{% load static %}
+
+{% with basket_items=basket.all %}
 {% for item in user.basket.all %} 
 <div class="basket_record"> 
     <img class="product-image" src="/media/{{ item.product.image }}" 
@@ -18,10 +20,13 @@
         </a> 
     </button> 
 </div> 
-{% endfor %} 
-{% if user.basket.all %} 
+{% endfor %}
+
+{% if basket_items %} 
 <div class="basket_summary"> 
     В корзине {{ user.basket.quantity }} товаров общей стоимостью 
     {{ user.basket.sum }} руб 
 </div> 
 {% endif %} 
+
+{% endwith %}
